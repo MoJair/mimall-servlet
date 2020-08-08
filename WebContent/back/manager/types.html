@@ -1,0 +1,133 @@
+<table id="types_data" data-options="fit:true"></table>
+
+
+<script>
+	var statusObj = [{tid:0, tname:"不可用"}, {tid:1, tname:"可用"}];
+	var types_editRow = undefined;
+	var types_op;
+	var types_flag;
+	
+	var types_obj = $('#types_data').datagrid({    
+	    url:'../../type', 
+	    queryParams: {op:"findAll"},
+	    fitColumns: true,
+	    loadMsg: '数据加载中，请稍后···',
+	    striped: true,	//斑马线
+	    sortName: "tno",
+	    remoteSort: false,	//前端排序
+	    singleSelect: true,	//只选中一行
+	    columns:[[    
+	        {field:'tno',title:'类型编号',width:100,align:'center',sortable:true},    
+	        {field:'tname',title:'类型名称',width:100,align:'center',editor:{type:"text",options:{required:true}}},    
+	        {field:'status',title:'类型状态',width:100,align:'center',formatter: function(val, row, index){
+	        	if(val == 0){
+	        		return "不可用";
+	        	} else {
+	        		return "可用";
+	        	}
+	        },editor:{type:"combobox",options:{required:true,valueField:"tid",textField:"tname",data:statusObj}}} 
+	    ]],
+	    toolbar: [{	<!--工具栏-->
+	    	text:"添加",
+			iconCls: 'icon-add',
+			handler: function(){
+				//alert('添加按钮')
+				types_op = "add";
+				types_flag = "添加成功！";
+				
+				if (types_editRow == undefined) {
+					types_obj.datagrid('insertRow',{index: 0, row: {}});	//索引从0开始	 插入一行
+					types_obj.datagrid("beginEdit", 0);		//开始编辑
+					types_editRow = 0;
+				}
+			}
+		},'-',{
+			text:"编辑",
+			iconCls: 'icon-edit',
+			handler: function(){
+				//alert('编辑按钮')
+				types_op = "update";
+				types_flag = "修改";
+				
+				if (types_editRow != undefined) {
+					return;
+				}
+				
+				var row = types_obj.datagrid("getSelected");
+				if( row == null) {
+					$.messager.show({title: '温馨提示', msg: '请选择您要修改的商品类型信息.....', timeout: 2000, showType: 'slide'});
+					return;
+				}
+				
+				types_editRow = types_obj.datagrid("getRowIndex", row);
+				//结束编辑
+				types_obj.datagrid("beginEdit", types_editRow);
+			}
+		},'-',{
+			text:"保存",
+			iconCls: 'icon-save',
+			handler: function(){
+				//alert('帮助按钮')
+				if (types_editRow == undefined) {
+					return;
+				}
+				//结束编辑
+				types_obj.datagrid("endEdit", types_editRow);
+				//获取修改内容
+				var row = types_obj.datagrid("getChanges")[0];
+				
+				row["op"] = types_op;	//row.op = types_op;
+				
+				//提交到后台
+				$.post("../../type", row, function(data) {
+					data = parseInt($.trim(data));
+					if(data > 0){
+						$.messager.show({title:'成功提示', msg: types_flag + '商品类型成功···', timeout: 2000, showType: 'slide'});
+						types_obj.datagrid("reload");	//刷新表格
+					} else {
+						$.messager.alert('失败提示', types_flag + '商品类型失败···', 'error');
+					}
+					row = null;
+					types_editRow = undefined;
+				}, "text");
+			}
+		},'-',{
+			text: "删除",
+			iconCls: 'icon-remove',
+			handler: function() {
+				if (types_editRow != undefined) {
+					return;
+				}
+				
+				var row = types_obj.datagrid("getSelected");
+				if( row == null) {
+					$.messager.show({title: '温馨提示' ,msg: '请选择您要 修改的商品类型信息.....', timeout: 2000, showType: 'slide'});
+					return;
+				}
+				
+				$.messager.confirm("确认提示", "数据一 旦删除将不能恢复，您确定要删除此数据吗? ", function(rt) {
+					if (!rt) {
+						return;
+					}
+					
+					$.post("../../type", {op: "delete", tno:row.tno}, data => {
+						if (data > 0) {
+							$.messager.show({title: '成功提示', msg: '商品类型删除成功...', timeout: 2000, showType: 'slide'});
+							types_obj.datagrid("reload"); //刷新表格
+						} else {
+							$.messager.alert('失败提示', ' 商品类型删除失败...', 'error');
+						}
+						row = null;
+					});
+				})
+			}
+		},'-',{
+			text:"撤销",
+			iconCls: 'icon-undo',
+			handler: function(){
+				types_obj.datagrid("rejectChanges");
+				types_editRow = undefined;
+			}
+		}]
+	});
+</script>
