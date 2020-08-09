@@ -17,7 +17,6 @@ public class BasicServlet extends HttpServlet{
 	private static final long serialVersionUID = -5469324281651268729L;
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		super.service(req, resp);
@@ -51,6 +50,18 @@ public class BasicServlet extends HttpServlet{
 	protected void send( HttpServletResponse resp ,int code) throws IOException {
 		PrintWriter out = resp.getWriter();
 		out.println(code);
+		out.flush();
+	}
+	
+	protected void send( HttpServletResponse response ,int code, String msg, Object obj) throws IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("msg", msg);
+		map.put("data", obj);
+		
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		PrintWriter out = response.getWriter();
+		out.println(gson.toJson(map)); //将传过来的对象,转成方son格式的字符串,返回
 		out.flush();
 	}
 }
