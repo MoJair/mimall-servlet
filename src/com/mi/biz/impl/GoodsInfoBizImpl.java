@@ -6,7 +6,9 @@ import java.util.Map;
 
 import com.mi.biz.GoodsInfoBiz;
 import com.mi.dao.GoodsInfoDao;
+import com.mi.dao.GoodsTypeDao;
 import com.mi.dao.impl.GoodsInfoDaoImpl;
+import com.mi.dao.impl.GoodsTypeDaoImpl;
 import com.mi.entity.GoodsInfo;
 
 public class GoodsInfoBizImpl implements GoodsInfoBiz{
@@ -32,6 +34,16 @@ public class GoodsInfoBizImpl implements GoodsInfoBiz{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("total", goodsInfoDao.total(tno, pname));
 		map.put("rows", goodsInfoDao.findByCondition (tno, pname, page, rows));
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> findIndex() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		GoodsTypeDao typeDao = new GoodsTypeDaoImpl();
+		GoodsInfoDao goodsInfoDao = new GoodsInfoDaoImpl();
+		map.put("types", typeDao.findAll());
+		map.put("goods", goodsInfoDao.findIndex());
 		return map;
 	}
 

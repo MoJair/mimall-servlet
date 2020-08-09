@@ -75,7 +75,7 @@ var app = new Vue({
 				let reg2 = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;  //验证邮箱格式
 				let reg3 = /^[\u4e00-\u9fff\w]{2,16}$/;  //汉字
 				
-				if (!(reg1.test(this.account) || reg2.test(this.accoount) || reg3.test(this.account))) {
+				if (!(reg1.test(this.account) || reg2.test(this.account) || reg3.test(this.account))) {
 					correct = false;
 				} else {	//说明验证通过
 					correct = false;
@@ -95,13 +95,13 @@ var app = new Vue({
 					correct = false;
 				}
 			}
-			Vue.set(app.status,flag, !correct);
+			Vue.set(app.status, flag, !correct);
 		},
 		
 		login: function() {
+			this.checkInfo(0);
 			this.checkInfo(1);
 			this.checkInfo(2);
-			this.checkInfo(3);
 			if($.inArray(true, this.status) >= 0) {	//说你当前对象的status数组中没有 true这个选项,说明当前对象的status数组中有true这个选项，也就意味着提交的表单中有数据不符合验证
 				return;
 			}

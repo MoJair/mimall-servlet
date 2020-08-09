@@ -61,4 +61,12 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 		return db.finds(GoodsInfo.class, sql, params);
 	}
 
+	@Override
+	public List<GoodsInfo> findIndex() {
+		DBHelper db = new DBHelper();
+		String sql = "select pid, pname, price, tno, pics from productInfo p1 where 4 >"
+				+ "(select count(gno) from productInfo p2 where p1.tno=p2.tno and d1.pid < p2.tno) order by p1.tno asc, p1.pid desc";
+		return db.finds(GoodsInfo.class, sql);
+	}
+
 }

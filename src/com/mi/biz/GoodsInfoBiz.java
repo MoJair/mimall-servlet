@@ -11,5 +11,7 @@ public interface GoodsInfoBiz {
 	public Map<String, Object> finds(int page, int rows);
 
 	public Map<String, Object> findByCondition(String tno, String pname, int page, int rows);
+	
+	public Map<String , Object> findIndex();
 
 }

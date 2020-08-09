@@ -24,7 +24,14 @@ String op = request.getParameter("op");
 			findByPage(request, response);
 		} else if ("findByCondition".equals(op)) {
 			findByCondition(request, response);
+		} else if ("findIndex".equals(op)) {
+			findIndex(request, response);
 		}
+	}
+
+	private void findIndex(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		GoodsInfoBiz goodsInfoBiz = new GoodsInfoBizImpl();
+		this.send(response, 200, "", goodsInfoBiz.findIndex());
 	}
 
 	private void findByCondition(HttpServletRequest request, HttpServletResponse response) throws IOException {

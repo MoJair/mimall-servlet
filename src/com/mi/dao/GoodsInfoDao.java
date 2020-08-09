@@ -10,4 +10,6 @@ public interface GoodsInfoDao {
 	public int total(String tno, String pname);
 	public List<GoodsInfo> findByCondition(String tno, String pname, int page, int rows);
 	
+	public List<GoodsInfo> findIndex();
+	
 }
