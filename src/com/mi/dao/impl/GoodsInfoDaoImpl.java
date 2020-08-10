@@ -2,6 +2,7 @@ package com.mi.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.mi.dao.DBHelper;
 import com.mi.dao.GoodsInfoDao;
@@ -13,7 +14,7 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 	@Override
 	public List<GoodsInfo> findByPage(int page, int rows) {
 		DBHelper db = new DBHelper();
-		String sql = "select pid, pname, p.tno, version, color, price, balance, intro from productInfo p, types t "
+		String sql = "select pid,type, pname, p.tno, version, color,p.status, price, balance,pics ,intro from productinfo p, types t "
 				+ "where p.tno=t.tno order by pid desc limit ?, ?";
 		return db.finds(GoodsInfo.class, sql, (page - 1) * rows, rows);
 	}
@@ -61,12 +62,24 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 		return db.finds(GoodsInfo.class, sql, params);
 	}
 
+	public int add(Map<String, String> map) {
+		DBHelper db = new DBHelper();
+		String sql = "insert into  productInfo values(0,?,?,?,?,?,?,?,?,?,?,?)";
+		return db.update(sql, map.get("pname"),map.get("tno"),map.get("size"),map.get("version"),map.get("color"),map.get("price"),map.get("intro"),map.get("type"),map.get("balance"),map.get("pics"),map.get("status"));
+	}
+
+	@Override
+	public List<GoodsInfo> findAll() {
+		DBHelper db = new DBHelper();
+		String sql = "select pid, pname, tno, version, color, price, balance,pics,type,intro from productInfo where status!=0";
+		return db.finds(GoodsInfo.class, sql);
+	}
+
 	@Override
 	public List<GoodsInfo> findIndex() {
-		DBHelper db = new DBHelper();
-		String sql = "select pid, pname, price, tno, pics from productInfo p1 where 4 >"
-				+ "(select count(gno) from productInfo p2 where p1.tno=p2.tno and d1.pid < p2.tno) order by p1.tno asc, p1.pid desc";
-		return db.finds(GoodsInfo.class, sql);
+			DBHelper db =new DBHelper();
+			String sql ="select pid,pname,price,tno,intro,pics,type from productinfo g1 where 8 > (select count(pid) from productinfo g2 where g1.tno = g2.tno and g1.pid < g2.pid ) order by g1.tno asc, g1.pid desc";
+			return db.finds(GoodsInfo.class, sql);
 	}
 
 }

@@ -1,10 +1,10 @@
 <table id="view_goods_data" data-options="fit:true"></table>
 
-<div id="view_goods_search">
+<div id="view_goods_search" >
 	<a href="javascript:openAddGoodsDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" style="float"left>添加</a>
 	<div class="datagrid-btn-separator"></div>	<!-- 分隔符 -->
 	<label>商品类型：</label>
-	<select id="view_goods_search_tno">
+	<select id="view_goods_search_tno"  class="view_goods_search_tno">
 		<option value=''>--请选择--</option>
 	</select>
 	<label>商品类型：</label>
@@ -12,18 +12,78 @@
 	<a href="javascript:searchGoodsInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
 </div>
 
-<div id="view_goods_dialog" data-options="closed:true">
-
+<div id ="view_goods_dialog" class ="view_goods_dialog" data-options="closed:true" >
+<form  id="myform" />
+<ul id="myul" >
+	<li><label>商品类型：
+	<select class="view_goods_search_tno" id="tno" name="tno">
+		<option value='0'>--请选择--</option>
+	</select>
+	</label></li>
+	<li><label>商品名称：<input type="text" id="pname" name="pname" /></label></li>
+	<li><label>尺寸：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min=1 id="size" name="size"/></label></li>
+	<li><label>存储容量：<input type="text"  id="version" name="version"/></label></li>
+	<li><label>颜色：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="color" name="color"/></label></li>
+	<li><label>价格：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min=1 id="price" name="price"/></label></li>
+	<li><label>商品简介：</label><textarea id="intro" name="intro"></textarea></li>
+	<li><label>库存：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min=1 id="balance" name="balance"/></label></li>
+	<li><label>图像：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="pics" name="pics" accept="image/gif,image/jpg" multiple="multiple" onchange="setImagePreviews(this,'show_pic')"/></label></li>
+	<li><label>状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<select  id="status" name="status">
+		<option value='2'>--请选择--</option>
+		<option value='1'>--正常--</option>
+		<option value='0'>--下架--</option>
+	</select>
+	</label></li>
+	<li><div id="show_pic" ></div></li>
+</ul>
+</form>
 </div>
 
 <script>
+function add() {
+	var tno = $.trim($("#tno").val());
+	var type = $.trim( $("#tno").find("option:selected").text());
+	var pname = $.trim($("#pname").val());
+	var size = $.trim($("#size").val());
+	var version = $.trim($("#version").val());
+	var color = $.trim($("#color").val());
+	var price = $.trim($("#price").val());
+	var intro = $.trim($("#intro").val());
+	var balance = $.trim($("#balance").val());
+	var status = $.trim($("#status").val());
+	console.info(type);
+	$.ajaxFileUpload({
+		url: "../../goods?op=add",
+		secureuri: false,
+		fileElementId:["pics"],
+		dataType: "json",
+		data:{tno:tno,pname:pname,type:type,price:price,size:size,color:color,status:status,version:version,intro:intro,balance:balance},
+		success: function (data,status) {
+			data = parseInt($.trim(data));
+			if(data == -1){
+				alert("信息不完整");
+			}else if(data>0){
+				$("#myform")[0].reset();
+				$("#showimg").html("");
+				alert("添加成功");
+			}else{
+				alert("添加失败");
+			}
+		},
+		error: function (data ,status,e) {
+			alert("添加失败"+e);
+		}
+	})
+	
+}
 $(function(){
 	$.post("../../type", {op:"findAll"}, data=> {
 		var str = "";
 		$.each(data, function(index, item) {
 			str += "<option value='" + item.tno + "'>" + item.tname + "</option>";
 		})
-		$("#view_goods_search_tno").append($(str));
+		$(".view_goods_search_tno").append($(str));
 	}, "json");
 })
 
@@ -44,17 +104,25 @@ $(function(){
 		pageSize: 10,
 		pageList: [10, 15, 20, 30, 40, 50, 100],
 		columns: [[
-			{field: 'pid', title: '商品编号', width:30, align:'center', sortable: true},
+			{field: 'pid', title: '编号', width:30, align:'center', sortable: true},
 			{field: 'pname', title: '商品名称', width:100, align:'center'},
-			{field: 'tno', title: '所属类型', width:20, align:'center'},
+			{field: 'type', title: '所属类型', width:50, align:'center'},
 			{field: 'version', title: '版本', width:50, align:'center'},
 			{field: 'color', title: '颜色' ,width:50, align:'center'},
 			{field: 'price', title: '价格' ,width:50,align:'center'},
 			{field: 'balance', title: '库存' ,width:50,align:'center'},
+			{field:'pics',title:'商品图片',width:300,align:'center',formatter :function(val,row,index){
+				var pic =[];
+				pic=val.split(",");
+				var str="";
+				for(var i=0;i<pic.length;i++){
+					str+="<img src='../../"+pic[i]+"' width='50px' height ='50px'/>";
+					}
+	        	return str;
+	        },editor:{type:"text",options:{required:true}}} ,
 			{field: 'intro', title: '简介' ,width:300,align:'center'},
 			{field: '_operator', title: '操作' ,width:150,align:'center', formatter:function(val, row, index){
 				var str = '<a href="javascript:void(0)" class="navy-icon-book-open">详细</a>';
-				str += '<a href="javascript:void(0)" class="navy-icon-add">添加</a>';
 				return str;
 			}},
 		]],
@@ -64,8 +132,8 @@ $(function(){
 	function openAddGoodsDialog() {
 		$("#view_goods_dialog").dialog({
 			title: "添加商品信息",
-			fit: true, /**全屏**/
-			/**width: 600, height: 400,**/
+			//fit: true, /**全屏**/
+			width: 600, height: 400,
 			closed: false,	/**准备好再打开需注释该属性**/
 			cache: false,
 			iconCls: "icon-add",
@@ -74,7 +142,7 @@ $(function(){
 				text:"确定",
 				iconCls:"icon-ok",
 				handler:function() {
-					alert("确定");
+					add();
 				}
 			}, {
 				text: "取消",
