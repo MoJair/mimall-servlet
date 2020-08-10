@@ -15,7 +15,7 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 	public List<GoodsInfo> findByPage(int page, int rows) {
 		DBHelper db = new DBHelper();
 		String sql = "select pid,type, pname, p.tno, version, color,p.status, price, balance,pics ,intro from productinfo p, types t "
-				+ "where p.tno=t.tno order by pid desc limit ?, ?";
+				+ "where p.tno=t.tno order by pid asc limit ?, ?";
 		return db.finds(GoodsInfo.class, sql, (page - 1) * rows, rows);
 	}
 
