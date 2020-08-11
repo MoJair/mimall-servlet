@@ -12,6 +12,6 @@ public interface GoodsInfoDao {
 	public List<GoodsInfo> findByCondition(String tno, String pname, int page, int rows);
 	public int add(Map<String, String> map);
 	public List<GoodsInfo> findAll();
-	
 	public List<GoodsInfo> findIndex();
+	public List<GoodsInfo> findByPname(String tno, String pname);
 }

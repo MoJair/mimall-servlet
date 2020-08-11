@@ -1,6 +1,8 @@
 package com.mi.controller;
 
+import java.io.Console;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.jsp.JspFactory;
 import javax.servlet.jsp.PageContext;
 import com.mi.biz.GoodsInfoBiz;
 import com.mi.biz.impl.GoodsInfoBizImpl;
+import com.mi.entity.GoodsInfo;
 import com.mi.util.FileUploadUtil;
 import com.mi.util.RequestParamUtil;
 
@@ -32,12 +35,26 @@ String op = request.getParameter("op");
 			add(request, response);
 		} else if ("findIndex".equals(op)) {
 			findIndex(request, response);
+		} else if ("findByPname".equals(op)) {
+			findByPname(request, response);
 		}
+	}
+
+	private void findByPname(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String pname = request.getParameter("pname");
+		String tno = request.getParameter("tno");
+		GoodsInfoBiz goodsInfoBiz = new GoodsInfoBizImpl();
+		List<GoodsInfo> list = goodsInfoBiz.findByPname(tno, pname);
+		System.out.println(list);
+		if (list==null ||list.size()<=0) {
+			this.send(response, 500,"", null);
+			return;
+		}
+		this.send(response,200,"",list);
 	}
 
 	private void findIndex(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		GoodsInfoBiz goodsInfoBiz = new GoodsInfoBizImpl();
-		//System.out.println(goodsInfoBiz.findIndex());
 		this.send(resp,200,"", goodsInfoBiz.findIndex());
 	}
 

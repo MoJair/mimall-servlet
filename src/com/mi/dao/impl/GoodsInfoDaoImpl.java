@@ -45,7 +45,7 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 	@Override
 	public List<GoodsInfo> findByCondition(String tno, String pname, int page, int rows) {
 		DBHelper db = new DBHelper();
-		String sql = "select pid, pname, p.tno, version, color, price, balance, intro from productInfo p, types t "
+		String sql = "select pid, pname, p.tno,pics, version, color, price, balance, intro from productInfo p, types t "
 				+ "where p.tno=t.tno ";
 		List<Object> params = new ArrayList<Object>();
 		if (!StringUtil.checkNull(tno)) {
@@ -80,6 +80,23 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 			DBHelper db =new DBHelper();
 			String sql ="select pid,pname,price,tno,intro,pics,type from productinfo g1 where 8 > (select count(pid) from productinfo g2 where g1.tno = g2.tno and g1.pid < g2.pid ) order by g1.tno asc, g1.pid desc";
 			return db.finds(GoodsInfo.class, sql);
+	}
+
+	@Override
+	public List<GoodsInfo> findByPname(String tno, String pname) {
+		DBHelper db = new DBHelper();
+		String sql = "select pid, pname, p.tno,pics, version, color, price, balance, intro from productInfo p, types t "
+				+ "where p.tno=t.tno ";
+		List<Object> params = new ArrayList<Object>();
+		if (!StringUtil.checkNull(tno)) {
+			sql += " and p.tno = ?";
+			params.add(tno);
+		}
+		if (!StringUtil.checkNull(pname)) {
+			sql += " and pname like concat('%', ?, '%')";
+			params.add(pname);
+		}
+		return db.finds(GoodsInfo.class, sql, params);
 	}
 
 }

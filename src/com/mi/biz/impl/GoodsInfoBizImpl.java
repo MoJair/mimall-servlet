@@ -63,4 +63,11 @@ public class GoodsInfoBizImpl implements GoodsInfoBiz{
 		return map;
 	}
 
+	@Override
+	public List<GoodsInfo> findByPname(String tno, String pname) {
+		GoodsInfoDao goodsInfoDao = new GoodsInfoDaoImpl();
+		System.out.println(goodsInfoDao.findByPname(tno,pname));
+		return goodsInfoDao.findByPname(tno,pname);
+	}
+
 }

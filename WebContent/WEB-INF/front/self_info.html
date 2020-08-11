@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="../">
 		<meta charset="UTF-8">
 		<title>小米商城-个人中心</title>
-		<base href="../">
 		<link rel="short icon" href="./images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
 	</head>
@@ -74,15 +74,13 @@
 				</ul>
 			</div>
 			<div class="search fr">
-				<form action="" method="post">
 					<div class="text fl">
 						<input type="text" class="shuru"  placeholder="小米6&nbsp;小米MIX现货">
 					</div>
 					<div class="submit fl">
-						<input type="submit" class="sousuo" value="搜索"/>
+						<input type="button"onclick="Search()" class="sousuo" value="搜索"/>
 					</div>
 					<div class="clear"></div>
-				</form>
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -131,4 +129,21 @@
 			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
 		</footer>
 	</body>
+	<script type="text/javascript" charset="utf-8" src="./js/index.js"></script>
+	<script src="js/vue.js"  type="text/javascript"></script>
+	<script src="js/axios.js" type="text/javascript"></script>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+	<script src="js/qs.js"  type="text/javascript"></script>
+	<script type="text/javascript">
+	function Search(){
+		var pname="";
+		pname = $.trim($(".shuru").val());
+		if(pname==""){
+			return;
+		}
+		localStorage.removeItem("pname");
+		localStorage.setItem("pname",pname);
+		location.href="liebiao.html";	
+	}
+	</script>
 </html>

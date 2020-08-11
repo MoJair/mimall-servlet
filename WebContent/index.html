@@ -21,8 +21,8 @@
 	<link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-	<div class="container">
-	<div id="login_info">
+	<div class="container" >
+	<div id="login_info">	
 		<!-- 顶部导航 start -->
 		<div class="header_bar">
 			<div class="header con_width">
@@ -86,6 +86,7 @@
 			</div>
 		</div>
 		</div>
+		<div id="app">
 		<!-- 顶部导航 end -->
 		<!-- 主体导航 start -->
 		<div class="main_nav con_width">
@@ -95,130 +96,31 @@
 			<a href=""><div class="runlogo"></div></a>
 			<div class="nav">
 				<ul>
-					<li><a href="./liebiao.html" target="_blank">小米手机</a>
+					<li v-for="type in types"><a href="./liebiao.html" target="_blank" >{{type.tname}}</a>
 						<div class="nav_item">
 							<div class="nav_item_con con_width">
 								<ul>
-									<li>
-										<label>新品1</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/mix2320-220.png" />
+									<li  v-for="good in goods" v-if="good.tno == type.tno">
+										<a :href="'xiangqing.html#' +good.pid + '&'" class="nav_item_con_img">
+											<img :src="good.pics.split(',')[0]" />
 										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品2</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/mix2320-220.png" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品3</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/mix2320-220.png" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品4</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/mix2320-220.png" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品5</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/mix2320-220.png" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品6</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/mix2320-220.png" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
+										<a :href="'xiangqing.html#' +good.pid + '&'" class="nav_item_con_name">{{good.pname}}</a>
+										<p>{{good.price}}元起</p>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</li>
-					<li><a href="#">Redmi红米</a></li>
-					<li><a href="#">电视</a></li>
-					<li><a href="#">笔记本</a>
-						<div class="nav_item">
-							<div class="nav_item_con con_width">
-								<ul>
-									<li>
-										<label>新品</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/bijiben320.jpg" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/bijiben320.jpg" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-									<li>
-										<label>新品</label>
-										<a href="#" class="nav_item_con_img">
-											<img src="./images/bijiben320.jpg" />
-										</a>
-										<a href="#" class="nav_item_con_name">小米8</a>
-										<p>2699元起</p>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li><a href="#">家电</a></li>
-					<li><a href="#">路由器</a></li>
-					<li><a href="#">智能硬件</a></li>
 					<li><a href="#">服务</a></li>
 					<li><a href="#">社区</a></li>
 				</ul>
 			</div>
 			<!-- 搜索部分 start -->
 			<div class="search_box">
-				<form auction="#">
 					<input type="search" name="search" class="search" />
-					<button>
-						<i class="iconfont icon-sousuo"></i>
+					<button onclick="Search()" >
+						<i class="iconfont icon-sousuo" ></i>
 					</button>
-					<!-- 默认搜索内容 -->
-					<div class="search_default">
-						<ul>
-							<li><a href="#">小米8</a></li>
-							<li><a href="#">小米MIX</a></li>
-						</ul>
-					</div>
-					<!-- 下拉列表内容 -->
-					<div class="datalist">
-						<ul>
-							<li><a href="#">小米6X<span>约有6件</span></a></li>
-							<li><a href="#">小米MIX 2S<span>约有5件</span></a></li>
-							<li><a href="#">黑鲨游戏手机<span>约有3件</span></a></li>
-							<li><a href="#">红米Note 5<span>约有6件</span></a></li>
-							<li><a href="#">红米5A<span>约有13件</span></a></li>
-							<li><a href="#">小米电话4C<span>约有5件</span></a></li>
-							<li><a href="#">电视32英寸<span>约有3件</span></a></li>
-						</ul>
-					</div>
-				</form>
 			</div>
 			<!-- 搜索部分 end -->
 		</div>
@@ -227,339 +129,20 @@
 		<!-- 定义分类菜单和banner图 start -->
 		<div class="home_container con_width">
 			<!-- 定义菜单 -->
-			<div class="menu_list">
+			<div class="menu_list" >
 				<ul>
-					<li><a href="#">手机 电话卡<span class="arrow">&gt;</span></a>
-						<div class="menu_list_item">
+					<li  v-for="type in types"><a href="#">{{type.tname}}<span class="arrow">&gt;</span></a>
+						<div class="menu_list_item" v-for="good in goods" v-if="good.tno == type.tno">
 							<ul class="menu_list_goods menu_col_4">
 								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
+									<a :href="'xiangqing.html#' +good.pid + '&'">
+										<img :src="good.pics.split(',')[0]"alt="">
+										<span>{{good.pname}}</span>
 									</a>
 								</li>
 							</ul>
 						</div>
 					</li>
-					<li><a href="#">电视 盒子<span class="arrow">&gt;</span></a>
-						<div class="menu_list_item">
-							<ul class="menu_list_goods menu_col_3">
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a href="#">笔记本 显示器<span class="arrow">&gt;</span></a>
-						<div class="menu_list_item">
-							<ul class="menu_list_goods menu_col_2">
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="./images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a href="#">家电 插线板<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">出行 穿戴<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">智能 路由器<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">电源 配件<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">健康 儿童<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">耳机 音箱<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">生活 箱包<span class="arrow">&gt;</span></a></li>
 				</ul>
 			</div>
 			<!-- 定义banner -->
@@ -622,134 +205,18 @@
 			</div>
 		</div>
 		<!-- 定义推荐部分 end -->
-		
-		<!-- 小米闪购 start -->
-		<div class="flashover con_width">
-			<h1 class="list_title">小米闪购
-				<div class="flashover_a">
-					<a href="javascript:;" onclick="flashover('R')">&lt;</a>
-					<a href="javascript:;" onclick="flashover('L')">&gt;</a>
-				</div>
-			</h1>
-			<div class="flashover_list">
-				<div class="flashover_item countdown goodlist4">
-					<p class="countdown_title">18:00 场</p>
-					<i class="iconfont icon-shandian"></i>
-					<p class="countdown_desc">距离结束还有</p>
-					<div class="countdown_time">
-						<label class="countdown_time_item" id="_h">00</label>
-						<label class="countdown_item_dot">:</label>
-						<label class="countdown_time_item" id="_m">00</label>
-						<label class="countdown_item_dot">:</label>
-						<label class="countdown_time_item" id="_s">00</label>
-					</div>
-				</div>
-				<div class="flashover_item_con" id="shangou">
-					<div class="flashover_item_con_div" id="shangouCon" style="left: 0px">
-						<div class="flashover_item flashover_goodlist goodlist1">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木1 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist2">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木2 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist3">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木3 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist4">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木4 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist1">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木5 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist2">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木6 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist3">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木7 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist4">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="./images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木8 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 小米闪购 end -->
-		
-		<!-- 广告1 start -->
-		<div class="ad_container con_width">
-			<a href="#" alt="腾讯黑鲨游戏手机3S" title="腾讯黑鲨游戏手机3S"><img src="./images/ad12.webp"></a>
-		</div>
-		<!-- 广告1 end -->
-		
 		<!-- 产品列表 start -->
-		<div class="goods" id="app">
+		<div class="goods" >
 			<!-- 手机 start -->
 			<div class="flashover con_width clearfix"  v-for="type in types">
-				<h1 class="list_title">{{type.tname}}<a href="">查看更多<i class="iconfont icon-xiangyoujiantou"></i></a></h1>
+				<h1 class="list_title">{{type.tname}}<a :href="'liebiao.html#'+type.tno+'&'" >查看更多<i class="iconfont icon-xiangyoujiantou"></i></a></h1>
 				<div class="goods_item_left1">
 					<a href="#"><img src="./images/Mix_alpha.jpg"/></a>
 				</div>
 				<div class="goods_item_right" v-for="good in goods" v-if="good.tno == type.tno">
 					<div class="goods_item_list" >
 						<div class="goodlist_content">
-							<a :href="'xiangqing.html#' +good.pid + '&' + type.tname"><img :src="good.pics.split(',')[0]" alt=""></a>
+							<a :href="'xiangqing.html#' +good.pid + '&'"><img :src="good.pics.split(',')[0]" alt=""></a>
 							<p class="good_title"><a href="#">{{good.pname}}</a></p>
 							<p class="good_desc" :title="good.intro">{{good.intro}}</p>
 							<p class="good_price">{{good.price}}元</p>
@@ -758,13 +225,6 @@
 				</div>
 			</div>
 			<!-- 手机 end -->
-			
-				<!-- 广告2 start -->
-				<div class="ad_container con_width">
-					<a href="#" alt="小米电视" title="小米电视"><img src="./images/ad2.jpg"></a>
-				</div>
-				<!-- 广告2 end -->
-			</div>
 			<!-- 视频 start -->
 			<div class="video con_width clearfix">
 				<h1 class="list_title">视频</h1>
@@ -781,7 +241,8 @@
 				</div>
 			</div>
 			<!-- 视频 end -->
-		
+		</div>
+		</div>
 		<!-- 产品列表 end -->
 
 		<!-- 底部 start -->
@@ -907,7 +368,8 @@
 <script type="text/javascript" charset="utf-8" src="./js/index.js"></script>
 <script src="js/vue.js"  type="text/javascript"></script>
 <script src="js/axios.js" type="text/javascript"></script>
-<script src="js/qs.js"  type="text/javascript"></script>	
+<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="js/qs.js"  type="text/javascript"></script>
 <script src="js/checklogin.js"  type="text/javascript"></script>
 <script type="text/javascript">
 let vm =new Vue({
@@ -919,7 +381,7 @@ let vm =new Vue({
 	methods:{
 		
 	},
-	mounted:function(){//页面加载完自动执行的方法
+	mounted:function(){//页面加载完执行的方法
 		axios.post("goods",qs.stringify({op:"findIndex"})).then(result =>{
 			if(result.data.code ==200){
 				this.types = result.data.data.types;
@@ -929,6 +391,18 @@ let vm =new Vue({
 	}
 	
 })
+
+function Search(){
+	var pname="";
+	pname = $.trim($(".search").val());
+	if(pname==""){
+		return;
+	}
+	localStorage.removeItem("pname");
+	localStorage.setItem("pname",pname);
+	location.href="liebiao.html";	
+	
+}
 </script>
 </body>
 </html>
