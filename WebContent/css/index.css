@@ -52,6 +52,58 @@ input{-webkit-appearance: none;}
 	padding: 0 20px;
 	float: right;
 }
+
+.user_info>ul>li>a{
+	color: #000000;
+}
+
+.user_info>ul>li>a:hover{
+	color: #ff6700;
+}
+
+/*登录后*/
+.header_user {
+	float: right;
+	position: relative;
+}
+.header_user .user_logo>a {
+	transition: background 0.1s linear;
+	position: relative;
+	z-index: 2;
+}
+.header_user:hover .user_logo>a {
+	color: #ff6700;
+	background: rgba(255,255,255,1);
+}
+.user_logo>a {
+	display: block;
+	line-height: 40px;
+	height: 40px;
+	padding: 0 20px;
+	color: #FFF;
+}
+/* 登录后滑动显示内容 */
+.user_info {
+	position: absolute;
+	width: 103px;
+	height: 0px;
+	line-height: 30px;
+	text-align: center;
+	top: 40px;
+	z-index: 1;
+	right: 0;
+	background: #FFF;
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+	transition: height 0.5s linear;
+	overflow: hidden;
+}
+.header_user:hover .user_info {
+	height: 160px;
+}
+/*登录后*/
+
+
+
 /* 右侧购物车 */
 .header_shopcart {
 	float: right;
@@ -92,6 +144,26 @@ input{-webkit-appearance: none;}
 .header_shopcart:hover .shopcart-info {
 	height: 89px;
 }
+
+/** 登录后用户滑动显示内容 **/
+.user-info {
+	position: absolute;
+	width: 60px;
+	height: 0px;
+	line-height: 88px;
+	text-align: center;
+	top: 40px;
+	z-index: 1;
+	right: 0;
+	background: #FFF;
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+	transition: height 0.5s linear;
+	overflow: hidden;
+}
+.header_shopcart:hover .shopcart-info {
+	height: 89px;
+}
+
 /** 主体导航 **/
 .main_nav {
 	min-width: 1226px;

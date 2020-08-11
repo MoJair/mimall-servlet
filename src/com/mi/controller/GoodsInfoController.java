@@ -37,7 +37,7 @@ String op = request.getParameter("op");
 
 	private void findIndex(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		GoodsInfoBiz goodsInfoBiz = new GoodsInfoBizImpl();
-		System.out.println(goodsInfoBiz.findIndex());
+		//System.out.println(goodsInfoBiz.findIndex());
 		this.send(resp,200,"", goodsInfoBiz.findIndex());
 	}
 

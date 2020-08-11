@@ -17,4 +17,13 @@ public class MemberInfoBizImpl implements MemberInfoBiz{
 		return memberInfoDao.login(account, pwd);
 	}
 
+	@Override
+	public int register(String uname, String pwd, String tel) {
+		if (StringUtil.checkNull(uname, pwd, tel)) {
+			return -1;
+		}
+		MemberInfoDao memberInfoDao = new MemberInfoDaoImpl();
+		return memberInfoDao.register(uname, pwd, tel);
+	}
+
 }
