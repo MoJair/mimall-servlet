@@ -14,6 +14,7 @@ public interface GoodsInfoBiz {
 	public int add(Map<String, String>  map);
 	public List<GoodsInfo> findAll();
 	public Object findIndex();
-	
 	public List<GoodsInfo> findByPname(String tno, String pname);
+
+	public GoodsInfo findByPid(int pid);
 }

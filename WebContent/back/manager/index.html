@@ -21,7 +21,7 @@
         	<h1>小米商城 - 后台管理</h1>
         </div>
         <div class="wu-header-right">
-        	<p><strong class="easyui-tooltip" title="2条未读消息">admin</strong>，欢迎您！</p>
+        	<p><strong class="easyui-tooltip" title="2条未读消息">MoJair</strong>，欢迎您！</p>
             <p><a href="#">网站首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
         </div>
     </div>
@@ -35,11 +35,19 @@
                     <li iconCls="icon-report-edit"><a href="javascript:void(0)" data-icon="icon-report-edit" data-link="view_goods.html" iframe="0">商品维护</a></li>
                 </ul>
             </div>
-            
-            <div title="个人中心" data-options="iconCls:'icon-user'" style="padding:5px;">  	
+            <div id="super_admin"  title="管理员信息" data-options="iconCls:'icon-report-picture'" style="padding:5px;">  	
+    			<ul class="easyui-tree wu-side-tree">
+                    <li iconCls="icon-admin"><a href="javascript:void(0)" data-icon="icon-users" data-link="admin.html" iframe="0">账户管理</a></li>
+                </ul>
+            </div>
+            <div title="用户管理中心" data-options="iconCls:'icon-user'" style="padding:5px;">  	
     			<ul class="easyui-tree wu-side-tree">
                     <li iconCls="icon-user-earth"><a href="javascript:void(0)" data-icon="icon-user-earth" data-link="self_info.html" iframe="0">用户信息</a></li>
-                  
+                </ul>
+            </div>
+            <div id="super_admin"  title="商品报表" data-options="iconCls:'icon-report-picture'" style="padding:5px;">  	
+    			<ul class="easyui-tree wu-side-tree">
+                    <li iconCls="icon-admin"><a href="javascript:void(0)" data-icon="icon-users" data-link="baobiao.html" iframe="0">库存详情</a></li>
                 </ul>
             </div>
         </div>

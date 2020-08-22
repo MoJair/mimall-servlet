@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+* { margin:0; padding:0; list-style:none;}
+html, body { 
+	background: #333;
+	overflow-y: auto;
+	overflow-x: hidden;
+	font:normal 15px "Microsoft YaHei";
+}
+#login_top {
+ height:39px;
+ background: #333;
+}
+#welcome{
+	height: 39px;
+	line-height: 39px;
+	padding-left: 40px;
+	background: url('../images/login/logo_top.png') 0px -7px no-repeat;
+	color:#fff;
+	float: left;
+}
+#back{
+	float: right;
+	height: 39px;
+	line-height: 39px;
+	padding-right: 15px;
+}
+#back a{
+	 color: #fff;
+	 text-decoration: none;
+}
+#login_center {
+}
+#login_bottom {
+ height:30px;
+ line-height: 30px;
+ text-align: center;
+ color: #555;
+}
+#login_area{
+	margin: 0px auto;
+	width: 1920px;
+	height: 878px;
+	background: url('../images/login/alpha.jpg') 0px 0px no-repeat;
+	position: relative;
+}
+#login_form{
+	width: 370px;
+	height: 270px;
+	position: absolute;
+	top: 80px;
+	left: 160px;
+}
+#login_tip{
+	height: 35px;
+	line-height: 35px;
+	font-weight: bold;
+	color: #3d96c9;
+	padding-top: 15px;
+}
+input,img{
+	border-style: 0.5px solid #fff;
+	vertical-align: middle;
+	color: #fff;
+	border-radius: 6px;
+	background-color:transparent; /*背景透明*/
+}
+
+.username,.pwd{
+	width: 300px;
+	height: 48px;
+	line-height: 48px;
+	padding-left: 43px;
+	margin-top: 20px;
+}
+.username{
+	background: url('../images/login/account.png') 10px 15px no-repeat;
+}
+.pwd{
+	background: url('../images/login/pwd.png') 10px 15px no-repeat;
+}
+#btn_area{
+ margin-top: 20px;
+ text-align: center;
+}
+
+#sub_btn{
+	width:97px;
+	height: 41px;
+	line-height: 41px;
+	background-color: #ff6700;
+	font:normal 15px/41px "Microsoft YaHei";
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 4px;
+	vertical-align: middle;
+	border:none;
+}
+
+#sub_btn:hover{
+	border: 1px solid #fff;
+}
+
+.verify{
+	width: 50px;
+	height: 38px;
+	line-height: 38px;
+	padding-left: 25px;
+	border: 1px solid #bac7d2 ;
+	background: #ecf5fa url(../images/login/login-icon.gif) left -92px no-repeat;
+ 	border-radius: 3px;
+ 	box-shadow: 5px 5px 5px #e7f1f7 inset;
+}
+
+.copy {
+	color:#b0b0b0; 
+	text-decoration: none;
+	background: url("../../images/favicon.ico") no-repeat left center;
+	padding-left: 20px;
+}
+
+.copy:hover{
+	color: #ff6700;
+}

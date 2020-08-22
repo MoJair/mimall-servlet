@@ -29,8 +29,8 @@ create table if not exists adminInfo(
 create table if not exists types(
 	tno int primary key auto_increment,-- 主键自增
 	tname varchar(30) not null unique,
-	tstate int default "1" -- 类型状态  状态为1时：可用  为2时暂时不使用
-)ENGINE = InnoDB AUTO_INCREMENT=401 default charset=utf8 collate=utf8_bin;
+	status int default "1" -- 类型状态  状态为1时：可用  为2时暂时不使用
+)ENGINE = InnoDB auto_increment=1 default charset=utf8 collate=utf8_bin;
 
 -- 表四：创建商品信息表
 create table if not exists productInfo(

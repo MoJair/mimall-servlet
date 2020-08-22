@@ -1,6 +1,5 @@
 package com.mi.controller;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +36,15 @@ String op = request.getParameter("op");
 			findIndex(request, response);
 		} else if ("findByPname".equals(op)) {
 			findByPname(request, response);
+		} else if ("findByPid".equals(op)) {
+			findByPid(request, response);
 		}
+	}
+
+	private void findByPid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		GoodsInfoBiz goodsInfoBiz = new GoodsInfoBizImpl();
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		this.send(response,200,"",goodsInfoBiz.findByPid(pid));
 	}
 
 	private void findByPname(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -45,7 +52,6 @@ String op = request.getParameter("op");
 		String tno = request.getParameter("tno");
 		GoodsInfoBiz goodsInfoBiz = new GoodsInfoBizImpl();
 		List<GoodsInfo> list = goodsInfoBiz.findByPname(tno, pname);
-		System.out.println(list);
 		if (list==null ||list.size()<=0) {
 			this.send(response, 500,"", null);
 			return;

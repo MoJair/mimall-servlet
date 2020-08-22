@@ -98,7 +98,7 @@ input{-webkit-appearance: none;}
 	overflow: hidden;
 }
 .header_user:hover .user_info {
-	height: 160px;
+	height: 130px;
 }
 /*登录后*/
 
@@ -234,7 +234,7 @@ input{-webkit-appearance: none;}
 	float: left;
 	position: relative;
 	text-align: center;
-	height: 240px;
+	height: 260px;
 	padding: 0 22px;
 }
 .nav_item_con>ul>li+li::before {
@@ -270,7 +270,7 @@ input{-webkit-appearance: none;}
 	width: 160px;
 }
 .nav_item_con>ul>li>a.nav_item_con_name {
-	margin-top: 20px;
+	margin-top: 10px;
 	color: #333;
 }
 .nav_item_con>ul>li>a.nav_item_con_name:hover {

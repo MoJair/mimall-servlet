@@ -5,116 +5,153 @@
 		<title>小米手机列表</title>
 		<link rel="short icon" href="./images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<!-- 收藏夹图标 -->
+		<link rel="shortcut icon" href="./images/favicon.ico">
+		<!-- 先引入重置的CSS样式文件 -->
+		<link rel="stylesheet" href="./css/reset.css">
+		<!-- 引入字体图标的css文件 -->
+		<link rel="stylesheet" href="./css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="./css/index.css">
 	</head>
 	<body>
 	<!-- start header -->
 		<header>
-			<div class="top center">
-				<div class="left fl">
+			<div id="login_info">
+		<!-- 顶部导航 start -->
+		<div class="header_bar">
+			<div class="header con_width">
+				<!-- 左侧菜单 -->
+				<div class="header_nav">
 					<ul>
-						<li><a href="http://www.mi.com/" target="_blank">小米商城</a></li>
-						<li> | </li>
-						<li><a href="">MIUI</a></li>
-						<li> | </li>
-						<li><a href="">IoT</a></li>
-						<li> | </li>
-						<li><a href="">云服务</a></li>
-						<li> | </li>
-						<li><a href="">金融</a></li>
-						<li> | </li>
-						<li><a href="">有品</a></li>
-						<li> | </li>
-						<li><a href="">小爱开放平台</a></li>
-						<li> | </li>
-						<li><a href="">企业团购</a></li>
-						<li> | </li>
-						<li><a href="">资质证照</a></li>
-						<li> | </li>
-						<li><a href="">协议规则</a></li>
-						<li> | </li>
-						<li><a href="">下载app</a></li>
-						<li> | </li>
-						<li><a href="">Select Location</a></li>
-						<div class="clear"></div>
+						<li><a href="#">小米商城</a></li>
+						<li><a href="#">MIUI</a></li>
+						<li><a href="#">IoT</a></li>
+						<li><a href="#">云服务</a></li>
+						<li><a href="#">金融</a></li>
+						<li><a href="#">有品</a></li>
+						<li><a href="#">小爱开放平台</a></li>
+						<li><a href="#">企业团购</a></li>
+						<li><a href="#">资质证照</a></li>
+						<li><a href="#">协议规则</a></li>
+						<li><a href="#">下载app</a></li>
+						<li><a href="#">Select Location</a></li>
 					</ul>
 				</div>
-				<div class="right fr">
-					<div class="gouwuche fr"><a href="">购物车</a></div>
-					<div class="fr">
-						<ul>
-							<li><a href="./login.html" target="_blank">登录</a></li>
-							<li>|</li>
-							<li><a href="./register.html" target="_blank" >注册</a></li>
-							<li>|</li>
-							<li><a href="">消息通知</a></li>
-						</ul>
+				<!-- 右侧购物车 -->
+				<div class="header_shopcart">
+					<div class="shopcart_logo">
+						<a href="front/gouwuche.html">
+							<i class="iconfont icon-cart"></i>
+							购物车（{{cartCount}}）	
+						</a>
+						<div class="shopcart-info">
+							<p>
+								购物车中还没有商品，赶紧选购吧!
+							</p>
+						</div>
 					</div>
-					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
+				<!--右侧登录、注册-->
+				<div class="user-auction" v-if="onlogin">
+					<ul>
+						<li><div class="header_user">
+								<div class="user_logo">
+									<a href="#">{{loginName}}</a>
+									<div class="user_info">
+										<ul><li><a href="front/self_info.html" target="_blank">个人中心</a></li></ul>
+										<ul><li><a href="front/order.html" target="_blank">我的订单</a></li></ul>
+										<ul><li><a href="javascript:void(0);" target="_blank">我的喜欢</a></li></ul>
+										<ul><li><a href="" target="_blank">退出登录</a></li></ul>
+									</div>
+								</div>
+						</div></li>
+						<li><a href="./register.html" target="_blank">注册</a></li>
+						<!--<li><a href="#">消息通知</a></li>-->
+					</ul>
+				</div>
+				<div class="user-auction" v-else="onlogin">
+					<ul>
+						<li><a href="./login.html" target="_blank">登录</a></li>
+						<li><a href="./register.html" target="_blank">注册</a></li>
+						<!--<li><a href="#">消息通知</a></li>-->
+					</ul>
+				</div>
 			</div>
+		</div>
+		</div>
 		</header>
 	<!--end header -->
 
 <!-- start banner_x -->
-		<div class="banner_x center">
-			<a href="./index.html" target="_blank"><div class="logo fl"></div></a>
-			<a href=""><div class="ad_top fl"></div></a>
-			<div class="nav fl">
-				<ul>
-					<li><a href="">小米手机</a></li>
-					<li><a href="">Redmi红米</a></li>
-					<li><a href="">电视</a></li>
-					<li><a href="">笔记本</a></li>
-					<li><a href="">家电</a></li>
-					<li><a href="">路由器</a></li>
-					<li><a href="">智能硬件</a></li>
-					<li><a href="">服务</a></li>
-					<li><a href="">社区</a></li>
-				</ul>
-			</div>
-			<div class="search fr">
-					<div class="text fl">
-						<input type="text" class="shuru"  placeholder="小米6&nbsp;小米MIX现货">
+<div id="look">
+<div class="main_nav con_width">
+	<div class="logo">
+		<img src="./images/mi-logo.png" alt="MIlogo" title="小米官网">
+	</div>
+	<a href=""><div class="runlogo"></div></a>
+	<div class="nav">
+		<ul>
+			<li v-for="type in types"><a href="./liebiao.html" target="_blank" >小米{{type.tname}}</a>
+				<div class="nav_item">
+					<div class="nav_item_con con_width">
+						<ul>
+							<li  v-for="good in goods" v-if="good.tno == type.tno">
+								<a :href="'xiangqing.html#' +good.pid + '&'" class="nav_item_con_img">
+									<img :src="good.pics.split(',')[0]" />
+								</a>
+								<a :href="'xiangqing.html#' +good.pid + '&'" class="nav_item_con_name">{{good.pname}}</a>
+								<p>{{good.price}}元起</p>
+							</li>
+						</ul>
 					</div>
-					<div class="submit fl">
-						<input type="button"onclick="Search()" class="sousuo" value="搜索"/>
-					</div>
-					<div class="clear"></div>
-				<div class="clear"></div>
-			</div>
-		</div>
+				</div>
+			</li>
+			<li><a href="#">服务</a></li>
+			<li><a href="#">社区</a></li>
+		</ul>
+	</div>
+	<!-- 搜索部分 start -->
+	<div class="search_box">
+			<input type="search" name="search" class="search" />
+			<button onclick="Search()" >
+				<i class="iconfont icon-sousuo" ></i>
+			</button>
+	</div>
+	<!-- 搜索部分 end -->
+</div>
+</div>
+		<!-- 主体导航 end -->
 <!-- end banner_x -->
 
 	<!-- start banner_y -->
 	<!-- end banner -->
 
 	<!-- start danpin -->
-		<div class="danpin center">
-			
-			<div class="biaoti center">小米手机</div>
-			<div class="main center" id="app">
-				<div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" v-for="good in goods"  onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-					<div class="sub_mingxing"><a :href="'xiangqing.html#' +good.pid " ><img :src="good.pics.split(',')[0]"  alt=""></a></div>
-					<div class="pinpai"><a :href="'xiangqing.html#' +good.pid " >{{good.pname}}</a></div>
-					<div class="jiage">{{good.price}}元</div>
-				</div>
-				<div class="clear"></div>
+	<div class="danpin center">
+		<div class="biaoti center">小米手机</div>
+		<div class="main center" id="app">
+			<div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" v-for="good in goods"  onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
+				<div class="sub_mingxing"><a :href="'xiangqing.html#' +good.pid +'&'" ><img :src="good.pics.split(',')[0]"  alt=""></a></div>
+				<div class="pinpai"><a :href="'xiangqing.html#' +good.pid +'&'" >{{good.pname}}</a></div>
+				<div class="jiage">{{good.price}}元</div>
 			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
 		
-
-		<footer class="mt20 center">			
-			<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
-			<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
-			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
-
-		</footer>
+	<div class="clear"></div>
+	<footer class="mt20 center">			
+		<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
+		<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
+		<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
+	</footer>
 
 	<!-- end danpin -->
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/vue.js"  type="text/javascript"></script>
 <script src="js/axios.js" type="text/javascript"></script>
 <script src="js/qs.js"  type="text/javascript"></script>
+<script type="text/javascript" src="js/checklogin.js"></script>
 <script type="text/javascript">	
 
 
@@ -142,9 +179,28 @@ let vm = new Vue({
 	}
 })
 
+let look = new Vue({
+	el:"#look",
+	data:{
+		goods:[],
+		types:[]
+	},
+	methods:{
+		
+	},
+	mounted:function(){//页面加载完执行的方法
+		axios.post("goods",qs.stringify({op:"findIndex"})).then(result =>{
+			if(result.data.code ==200){
+				this.types = result.data.data.types;
+				this.goods = result.data.data.goods;
+			}
+		})
+	}
+})
+
 function Search(){
 	var pname="";
-	pname = $.trim($(".shuru").val());
+	pname = $.trim($(".search").val());
 	if(pname==""){
 		return;
 	}
@@ -152,6 +208,7 @@ function Search(){
 	localStorage.setItem("pname",pname);
 	location.href="liebiao.html";	
 }
+
 </script>
 	</body>
 </html>

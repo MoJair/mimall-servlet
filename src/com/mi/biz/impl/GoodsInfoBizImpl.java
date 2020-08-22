@@ -66,8 +66,16 @@ public class GoodsInfoBizImpl implements GoodsInfoBiz{
 	@Override
 	public List<GoodsInfo> findByPname(String tno, String pname) {
 		GoodsInfoDao goodsInfoDao = new GoodsInfoDaoImpl();
-		System.out.println(goodsInfoDao.findByPname(tno,pname));
 		return goodsInfoDao.findByPname(tno,pname);
+	}
+
+	@Override
+	public GoodsInfo findByPid(int pid) {
+		if (StringUtil.checkNull(pid)) {
+			return null;
+		}
+		GoodsInfoDao goodsInfoDao = new GoodsInfoDaoImpl();
+		return goodsInfoDao.findByPid(pid);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.mi.dao;
 
+import java.io.BufferedReader;
+import java.io.Reader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Blob;
@@ -125,7 +127,119 @@ public class DBHelper{
 			}
 		}
 	}
-
+	public <T> List<T> findMutiple(String sql, List<Object>params,Class c){
+		List<T> list = new ArrayList<T>();
+		int result = -1;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			
+			con = this.getConnection();
+			pstmt = con.prepareStatement(sql);
+			setParams(pstmt, params);//参数注入
+			rs=pstmt.executeQuery();
+			//获取所有列名
+			String[] columnNames =this.getColumnNames(rs);
+			
+			T t = null;//声明一个对象
+			Object obj = null;//对应列的值
+			String typeName = null;//对应列的值的类型
+			//通过反射获取所有的methods
+			Method[] methods = c.getDeclaredMethods();
+			//处理结果集
+			while(rs.next()) {
+				//创建一个对象
+				t = (T)c.newInstance();
+				
+				for(String columnName :columnNames) {
+					
+					obj =rs.getObject(columnName);
+					//循环所有的方法
+					for(Method m : methods){
+						//是否有对应的setxx 方法名
+						String name = "set"+columnName;
+						//判断方法名是否一致
+						if(name.equalsIgnoreCase(m.getName())){
+							if(null == obj){
+								continue;
+							}
+							//获取对应值的类型
+							typeName = obj.getClass().getName();
+							//判断数据类型
+							if("java.math.BigDecimal".equals(typeName)){
+								try {
+									m.invoke(t, rs.getInt(columnName));
+								} catch (Exception e) {
+									m.invoke(t, rs.getDouble(columnName));
+								}
+							}else if("java.lang.Integer".equals(typeName)){
+								m.invoke(t, rs.getInt(columnName));
+							}else if("java.lang.Double".equals(typeName)){
+								m.invoke(t, rs.getDouble(columnName));
+							}else if("java.lang.String".equals(typeName)){
+								m.invoke(t, rs.getString(columnName));
+							}else if("java.lang.Date".equals(typeName)){
+								m.invoke(t, rs.getString(columnName));
+							}else if("oracle.sql.CLOB".equals(typeName)){
+								Reader in = rs.getCharacterStream(columnName);
+								BufferedReader br = new BufferedReader(in);
+								StringBuffer sb = new StringBuffer();
+								String str = br.readLine();
+								while(null != str) {
+									sb.append(str);
+									str = br.readLine();
+								}
+								m.invoke(t, sb.toString());
+							}else {
+								
+							}
+						}
+					}
+					
+				}
+				list.add(t);//设置对象到list集合中
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			this.close(rs, pstmt, con);
+		}
+		return list;
+	}
+	public int update(List<String>sqls, List<List<Object>> params) throws SQLException {
+		int result = -1;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = this.getConnection();
+			//将提交方式设置为手动
+			con.setAutoCommit(false);
+			for(int i = 0,len= sqls.size();i < len;i++) {
+				pstmt = con.prepareStatement(sqls.get(i));
+			
+				this.setParams(pstmt, params.get(i));
+				System.out.println("---------------------------");
+				System.out.println(sqls.get(i));
+				System.out.println(params.get(i));
+				result = pstmt.executeUpdate();
+				
+				con.commit();
+			}
+			con.commit();
+			
+		} catch (SQLException e) {
+			con.rollback();//事务回滚
+		} finally {
+			con.setAutoCommit(true);//回复提交方式->自动提交
+			this.close(null, pstmt, con);
+		}
+		return result;
+	}
 	/**
 	 * 更新操作
 	 * @param sql 要执行的更新语句，可以是insert、delete或update
@@ -211,7 +325,49 @@ public class DBHelper{
 		}
 		return result;
 	}
-
+	
+	/**
+	 * 查询多条数据的方法
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
+	public List<Map<String, String>> findss(String sql, Object ... params) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		
+		try {
+			con = this.getConnection();
+			pstmt = con.prepareStatement(sql);
+			this.setParams(pstmt, params);
+			
+			rs = pstmt.executeQuery();
+			
+			// 获取结果集中所有列的列名
+			String[] colNames = this.getColumnNames(rs);
+			Map<String, String> map = null;
+			while (rs.next()) {
+				// 每循环一次就是一条记录，一条记录的信息就存到一个map中
+				map = new HashMap<String, String>();
+				// 循环所有的列名，根据列名取出每一个列的值
+				for (String colName : colNames) {
+					// 将查询出来的结果，存到map中。以对应列的列名为键，对应列的值为值
+					map.put(colName, rs.getString(colName));
+				}
+				// 当循环结束，说明这一样的数据已经读取完成，那么就存到了这一行数据的map存到list中
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.close(rs, pstmt, con);
+		}
+		return list;
+	}
+	
+	
 	/**
 	 * 获取结果集中所有列的类名
 	 * @param rs 结果集对象

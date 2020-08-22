@@ -14,4 +14,5 @@ public interface GoodsInfoDao {
 	public List<GoodsInfo> findAll();
 	public List<GoodsInfo> findIndex();
 	public List<GoodsInfo> findByPname(String tno, String pname);
+	public GoodsInfo findByPid(int pid);
 }

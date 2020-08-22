@@ -16,7 +16,7 @@ public class MemberInfoDaoImpl implements MemberInfoDao{
 	@Override
 	public int register(String uname, String pwd, String tel) {
 		DBHelper db = new DBHelper();
-		String sql = "insert into userInfo values (0,?,?,'男', ?,null,null,'1')";
+		String sql = "insert into userInfo values (0,?,?,'男', ?,'','','1')";
 		return db.update(sql, uname, pwd, tel);
 	}
 	

@@ -18,16 +18,14 @@ public class GoodsInfo implements Serializable{
 	private String intro;  //简介
 	private String type;	//型号
 	private Integer balance;	//库存
-	private String pics;  //全部图片
-	private String pic;	//取一张图片
-	
+	private String pics;  //图片
 	private String status;	//状态
 	
 	@Override
 	public String toString() {
 		return "productInfo [pid=" + pid + ", pname=" + pname + ", tno=" + tno + ", size=" + size + ", "
 				+ "version=" + version + ", color=" + color + ", price=" + price + ", intro=" + intro + ","
-				+ " type=" + type + ", balance=" + balance + ", pics=" + pics + ", pic=" + pic + ", status=" + status +"]";
+						+ " type=" + type + ", balance=" + balance + ", pics=" + pics + ", status=" + status +"]";
 	}
 
 	public Integer getPid() {
@@ -116,19 +114,6 @@ public class GoodsInfo implements Serializable{
 
 	public void setPics(String pics) {
 		this.pics = pics;
-		setPic(pics);
-	}
-
-	public String getPic() {
-		return pic;
-	}
-
-	public void setPic(String pic) {
-		if (!StringUtil.checkNull(pics)) {
-			this.pic = pics.split(";")[0];	//取第一张图片
-			return;
-		}
-		this.pic = pics;
 	}
 
 	public String getStatus() {
@@ -142,8 +127,6 @@ public class GoodsInfo implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
 	
 }
 	

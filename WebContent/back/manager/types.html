@@ -19,10 +19,7 @@
 	    singleSelect: true,	//只选中一行
 	    columns:[[    
 	        {field:'tno',title:'类型编号',width:100,align:'center',sortable:true},    
-	        {field:'tname',title:'类型名称',width:100,align:'center',editor:{type:"text",options:{required:true}}},
-	        {field: 'pic', title:'类型图片', width:100, align:'center', formatter: function(val, row, index) {
-				return "<img src='../../" + val + "' width='50px' height='50px' />";
-			}, editor: {type: "text", options:{required: true}}},
+	        {field:'tname',title:'类型名称',width:100,align:'center',editor:{type:"text",options:{required:true}}},    
 	        {field:'status',title:'类型状态',width:100,align:'center',formatter: function(val, row, index){
 	        	if(val == 0){
 	        		return "不可用";

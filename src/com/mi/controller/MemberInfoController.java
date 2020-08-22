@@ -74,7 +74,7 @@ public class MemberInfoController extends BasicServlet{
 		String code = request.getParameter("code");
 		HttpSession session = request.getSession();
 		String vcode = String.valueOf(session.getAttribute("validatecode"));
-		if (!code.equals(vcode)) {
+		if (!code.equalsIgnoreCase(vcode)) {
 			this.send(response, 500, "", null);
 			return;
 		}

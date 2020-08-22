@@ -78,12 +78,14 @@ let app = new Vue({
 			}else if (flag == 1) {
 				let reg = /^[\w@!#$%&^*]{6,15}$/; // 验证密码格式
 				if (reg.test(this.pwd)) {
+					console.info(this.pwd);
 					correct = true;
 				} else {
 					correct = false;
 				}
 			} else if (flag == 2) {
 				if ((this.pwd) == (this.rpwd)) {
+					console.info(this.rpwd);
 					correct = true;
 				} else {
 					correct = false;
@@ -125,6 +127,7 @@ let app = new Vue({
 					var temp = document.referrer;	//获取来源
 					if (temp == ""|| temp.indexOf("register.html") > 0) {
 						location.href="index.html";
+						alert(login.$data.loginId);
 					} else {
 						location.href = temp;
 					}

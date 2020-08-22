@@ -46,15 +46,10 @@
 				<!-- 右侧购物车 -->
 				<div class="header_shopcart">
 					<div class="shopcart_logo">
-						<a href="#">
+						<a href="front/gouwuche.html">
 							<i class="iconfont icon-cart"></i>
-							购物车（0）	
+							购物车（{{cartCount}}）	
 						</a>
-						<div class="shopcart-info">
-							<p>
-								购物车中还没有商品，赶紧选购吧!
-							</p>
-						</div>
 					</div>
 				</div>
 				<!--右侧登录、注册-->
@@ -65,9 +60,8 @@
 									<a href="#">{{loginName}}</a>
 									<div class="user_info">
 										<ul><li><a href="front/self_info.html" target="_blank">个人中心</a></li></ul>
-										<ul><li><a href="" target="_blank">评价晒单</a></li></ul>
-										<ul><li><a href="" target="_blank">我的喜欢</a></li></ul>
-										<ul><li><a href="" target="_blank">小米账户</a></li></ul>
+										<ul><li><a href="front/order.html" target="_blank">我的订单</a></li></ul>
+										<ul><li><a href="javascript:void(0);" target="_blank">我的喜欢</a></li></ul>
 										<ul><li><a href="" target="_blank">退出登录</a></li></ul>
 									</div>
 								</div>
@@ -86,8 +80,10 @@
 			</div>
 		</div>
 		</div>
-		<div id="app">
 		<!-- 顶部导航 end -->
+		
+		
+		<div id="app">
 		<!-- 主体导航 start -->
 		<div class="main_nav con_width">
 			<div class="logo">
@@ -96,7 +92,7 @@
 			<a href=""><div class="runlogo"></div></a>
 			<div class="nav">
 				<ul>
-					<li v-for="type in types"><a href="./liebiao.html" target="_blank" >{{type.tname}}</a>
+					<li v-for="type in types"><a href="./liebiao.html" target="_blank" >小米{{type.tname}}</a>
 						<div class="nav_item">
 							<div class="nav_item_con con_width">
 								<ul>
@@ -105,7 +101,7 @@
 											<img :src="good.pics.split(',')[0]" />
 										</a>
 										<a :href="'xiangqing.html#' +good.pid + '&'" class="nav_item_con_name">{{good.pname}}</a>
-										<p>{{good.price}}元起</p>
+										<p>{{good.price}}元</p>
 									</li>
 								</ul>
 							</div>
@@ -132,8 +128,8 @@
 			<div class="menu_list" >
 				<ul>
 					<li  v-for="type in types"><a href="#">{{type.tname}}<span class="arrow">&gt;</span></a>
-						<div class="menu_list_item" v-for="good in goods" v-if="good.tno == type.tno">
-							<ul class="menu_list_goods menu_col_4">
+						<div class="menu_list_item">
+							<ul class="menu_list_goods menu_col_4"  v-for="good in goods" v-if="good.tno == type.tno">
 								<li>
 									<a :href="'xiangqing.html#' +good.pid + '&'">
 										<img :src="good.pics.split(',')[0]"alt="">

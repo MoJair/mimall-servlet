@@ -24,7 +24,7 @@
 	<li><label>尺寸：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min=1 id="size" name="size"/></label></li>
 	<li><label>存储容量：<input type="text"  id="version" name="version"/></label></li>
 	<li><label>颜色：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="color" name="color"/></label></li>
-	<li><label>价格：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min=1 id="price" name="price"/></label></li>
+	<li><label>价格：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  id="price" name="price"/></label></li>
 	<li><label>商品简介：</label><textarea id="intro" name="intro"></textarea></li>
 	<li><label>库存：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min=1 id="balance" name="balance"/></label></li>
 	<li><label>图像：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="pics" name="pics" accept="image/gif,image/jpg" multiple="multiple" onchange="setImagePreviews(this,'show_pic')"/></label></li>
@@ -96,7 +96,7 @@ $(function(){
 		loadMsg: '数据加载中，请稍后. . . ',
 		striped: true,
 		sortName: "pid",
-		sortOrder: "asc",
+		sortOrder: 'asc',
 		remoteSort: false,
 		singleSelect: true,
 		pagination: true,

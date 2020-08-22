@@ -1,0 +1,82 @@
+<table id="admin_data" data-option="fit:true"></table>
+<script>
+var types_op;
+var types_flag;
+var types_editRow = undefined;
+var statusobj = [{tid:2,tname:"冻结"},{tid:1,tname:"可用"}];
+var types_obj = $('#admin_data').datagrid({    
+    url:'../../admin', 
+    fitColumns : true,
+   	loadMsg : '数据加载中。。。',
+    queryParams :{op:"finds"},
+    sortName :'aid',
+    striped:true,
+    remoteSort:false,
+    singleSelect:true,
+    columns:[[    
+        {field:'aid',title:'编号',width:50,align:'center',sortable:true},    
+        {field:'aname',title:'用户账号',width:100,align:'center',},    
+        {field:'pwd',title:'用户密码',width:100,align:'center',editor:{type:"text",options:{required:true}}} ,
+        {field:'status',title:'使用状态',width:50,align:'center',formatter :function(val,row,index){
+        	if(val==2){
+        		return "冻结";
+        	}else{
+        		return "可用";
+        	}
+        },editor:{type:"combobox",options:{required:true,valueField:"tid",textField:"tname",data:statusobj }}}   
+    ]],
+    toolbar: [{
+		text:'编辑',
+		iconCls: 'icon-edit',
+		handler: function(){
+			types_op ="update";
+			types_flag= "修改";
+			if(types_editRow != undefined){
+				return;
+			}
+			var row = types_obj.datagrid('getSelected');
+			if(row==null){
+				$.messager.show({title:'温馨提示',msg: '请选择要修改的商品信息...', timeout: 2000,showType: 'slide' });
+				return;
+			}
+			types_editRow = types_obj.datagrid('getRowIndex',row);
+			//开始编辑
+			types_obj.datagrid('beginEdit',types_editRow);
+
+			}
+	},'-',{
+		text:'保存',
+		iconCls: 'icon-save',
+		handler: function(){
+			if(types_editRow == undefined){
+				return;
+			}
+			types_obj.datagrid('endEdit',types_editRow);
+			var row = types_obj.datagrid("getChanges")[0];
+			row["op"] = types_op;
+			$.post("../../admin",row,data =>{
+				if(data.code == 200){
+					$.messager.show({title:'成功提示',msg: types_flag+'成功...', timeout: 2000,showType: 'slide' });
+					types_obj.datagrid("reload");
+				}else{
+					$.messager.alert('失败提示',types_flag+'失败...','error');
+				}
+				row =null;
+				types_editRow = undefined;
+			},"json")			
+		}
+	},'-',{
+		text:'撤销',
+		iconCls: 'icon-undo',
+		handler: function(){
+			types_op ="edit";
+			types_flag= "修改";
+			}
+	}]
+
+    
+});  
+
+
+
+</script>

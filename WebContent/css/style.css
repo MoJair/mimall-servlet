@@ -18,9 +18,33 @@ a{border:none;text-decoration: none;color:#000;}
 .ft20{font-size: 20px;}
 .ftbc{color: #ff6700;font-weight: bold;}
 .pr{padding-right: 40px;}
-
 .h3{font-size: 22px;font-weight: bold;}
-
+#left_f1>img{width:600px;}
+.sub_content  img{width: 80px;}
+ #num_add{
+	width:98px;
+	height:28px;
+	line-height:28px;
+	border:1px solid #ddd;
+	margin:45px auto 0;
+	margin-left: 60px;
+}
+ #num_add a{
+	width:29px;
+	height:28px;
+	line-height:28px;
+	background:#f3f3f3;
+	color:#666;	
+}
+ .num_show{
+	width:38px;
+	height:28px;
+	text-align:center;
+	border:0;
+	display:block;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+}
 
 /*header*/
 header{width: 100%;height: 40px;background: #333}
@@ -188,16 +212,16 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .gwcxqbj .gwcxd .top2 .sub_top:nth-of-type(5){margin-left: 60px;}
 .gwcxqbj .gwcxd .top2 .sub_top .quanxuan{width:18px;height:18px;border:1px solid #ccc;background: none;}
 .gwcxqbj .gwcxd .content2{width:1226px;height: 120px;border-top: 1px solid #ccc;}
-.gwcxqbj .gwcxd .content2 .sub_content{width:50px;height: 120px;line-height:120px;margin-right: 0px;}
+.gwcxqbj .gwcxd .content2 .sub_content{width:80px;height: 120px;line-height:120px;margin-right: 0px;}
 .gwcxqbj .gwcxd .sub_content .quanxuan{width:18px;height:18px;border:1px solid #ccc;background: none;}
 .gwcxqbj .gwcxd .content2 .sub_content img{vertical-align: middle;}
 .gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(1){margin-left: 30px;} 
 .gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(2){margin-left: 35px;}
-.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(3){margin-left: 55px;width: 330px;}
-.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(4){margin-left: 55px;}
+.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(3){margin-left: 30px;width: 330px;}
+.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(4){margin-left: 30px;}
 .gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(5){margin-left: 115px;}
-.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(6){margin-left: 115px;color:#ff6700;}
-.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(7){margin-left: 145px;font-size: 25px;}
+.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(6){margin-left: 85px;color:#ff6700;}
+.gwcxqbj .gwcxd .content2 .sub_content:nth-of-type(7){margin-left: 110px;font-size: 25px;}
 .gwcxqbj .gwcxd .content2 .sub_content .shuliang{width: 70px;height: 35px;border:2px solid #ccc;text-align: center;font-size:16px;color:#ff6700;}
 .gwcxqbj .gwcxd .content2 .sub_content a{display: block;width: 20px;height: 20px;border-radius: 10px;color:#000;}
 .gwcxqbj .gwcxd .content2 .sub_content a:hover{color:#ff6700;}
@@ -219,8 +243,9 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .grzxbj .selfinfo .lfnav .ddzx{width: 234px;height: 40px;line-height: 40px;font-size: 19px; margin:30px 20px 10px 40px;color:rgb(51,51,51);}
 .grzxbj .selfinfo .lfnav .subddzx ul li{display: block;width: 194px;height: 40px;line-height: 40px;padding-left: 40px;}
 .grzxbj .selfinfo .lfnav .subddzx ul li a{color:rgb(117,117,117);}
-.grzxbj .selfinfo .lfnav .subddzx ul li a:hover{color:rgb(51,51,51);}
-.grzxbj .selfinfo .rtcont{width: 978px;height: 500px;background: #fff;}
+.grzxbj .selfinfo .lfnav .subddzx ul li a:hover{color:#ff6700;margin-left: -20px;font-size: 18px;}/*左侧列表*/
+.grzxbj .selfinfo .rtcont{width: 978px;height: 500px;background: #fff;display: none;}                    /*显示的表*/
+.grzxbj .selfinfo .rtcont.show{display: block;}
 .grzxbj .selfinfo .rtcont .ddzxbt{width: 938px;height: 60px;line-height: 60px;font-size: 22px;font-weight:bold;color:rgb(117,117,117);padding-left: 40px;border-bottom: 1px solid #ccc;}
 .grzxbj .selfinfo .rtcont .grzlbt{width:938px;height: 60px;line-height: 60px;font-size: 20px;color:rgb(117,117,117);}
 .grzxbj .selfinfo .rtcont .subgrzl{height: 45px;line-height: 45px;width: 900px;background: rgb(253,253,253);border:1px solid #aaa;margin-top: 10px;margin-bottom: 10px;border-radius: 3px;}
@@ -240,3 +265,77 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .grzxbj .selfinfo .rtcont .ddxq .ztxx ul li a:hover{color:#ff6700;}
 /*footer*/
 footer{width: 100%;height: 120px;line-height: 30px;text-align: center;font-size: 12px;background: rgb(250,250,250);padding:30px 0;}
+
+
+/*设置按钮样式*/
+.grzxbj .selfinfo .rtcont login_button{margin: 15px auto;}
+.grzxbj .selfinfo .rtcont .button1{border:none;width: 240px;height: 45px;margin-left:220px;background: #ff6700;color: #fff; font-size: 20px;font-weight: bold;letter-spacing: 2px;cursor:pointer;border-radius: 4px;}
+.grzxbj .selfinfo .rtcont .button2{border:none;width: 240px;height: 45px;margin-left:55px;background: #ff6700;color: #fff; font-size: 20px;font-weight: bold;letter-spacing: 2px;cursor:pointer;border-radius: 4px;}
+.grzxbj .selfinfo .rtcont .button1:hover{border:1px solid #55aaff;}
+.grzxbj .selfinfo .rtcont .button2:hover{border:1px solid #55aaff;}
+
+.grzxbj .selfinfo .rtcont img{width:978px;height:500px;}/*背景图*/
+
+
+.btn{}
+.grzxbj .selfinfo .lfnav .subddzx ul li .btn.active{color:#ff6700;font-weight:bold;}
+.grzxbj .selfinfo .lfnav .ddzx.active{color:#ff6700;font-weight:bold;}
+/*地址选项框*/
+.grzxbj .selfinfo .rtcont .subgrzl .choose{font-size:15px;font-weight:bold;color:rgb(117,117,117);margin-left:-30px;}
+.grzxbj .selfinfo .rtcont .subgrzl .choose select{height:30px;background:rgb(253,253,253);border:none;}
+.grzxbj .selfinfo .rtcont .subgrzl .choose .xu{margin-left:50px;}
+/*设置资料框*/
+.grzxbj .selfinfo .rtcont input{border: none;outline:none;width: 700px;height: 35px;font-size: 14px;margin-left: 20px; margin-top: 10px;}
+.grzxbj .selfinfo .rtcont .subgrzl:hover{border:1px solid #ff6700;}
+
+.user_info>ul>li>a{
+	color: #000000;
+}
+
+.user_info>ul>li>a:hover{
+	color: #ff6700;
+}
+
+/*登录后*/
+.header_user {
+	float: right;
+	position: relative;
+}
+.header_user .user_logo>a {
+	transition: background 0.1s linear;
+	position: relative;
+	z-index: 2;
+}
+.header_user:hover .user_logo>a {
+	color: #FFF;
+	/**background: rgba(255,255,255,1);**/
+	background: #ff6700;
+}
+.user_logo>a {
+	display: block;
+	line-height: 40px;
+	height: 40px;
+	padding: 0 20px;
+	color: #ff6700;
+}
+/* 登录后滑动显示内容 */
+.user_info {
+	position: absolute;
+	width: 103px;
+	height: 0px;
+	line-height: 30px;
+	text-align: center;
+	top: 40px;
+	z-index: 1;
+	right: 0;
+	background: #FFF;
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+	transition: height 0.5s linear;
+	overflow: hidden;
+	font-size: 12px;
+}
+.header_user:hover .user_info {
+	height: 130px;
+	width:80px;
+}
+/*登录后*/

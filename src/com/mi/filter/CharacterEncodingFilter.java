@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mi.util.StringUtil;
 
-@WebFilter(filterName = " CharacterEncodingFilter", value ="/*" ,initParams = @WebInitParam(name = "encoding", value="utf-8" ))
+@WebFilter(filterName = "CharacterEncodingFilter", value ="/*" ,initParams = @WebInitParam(name = "encoding", value="utf-8" ))
 public class CharacterEncodingFilter implements Filter{
 	private String encoding = "utf-8";
 	

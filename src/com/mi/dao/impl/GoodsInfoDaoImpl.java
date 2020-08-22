@@ -99,4 +99,11 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao{
 		return db.finds(GoodsInfo.class, sql, params);
 	}
 
+	@Override
+	public GoodsInfo findByPid(int pid) {
+		DBHelper db =new DBHelper();
+		String sql ="select pid,pname,price,tno,color,size,balance,intro,version,pics,type from productinfo  where status!=0 and pid=?";
+		return db.find(GoodsInfo.class, sql, pid);
+	}
+
 }
